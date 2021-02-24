@@ -45,4 +45,25 @@ public class MathService {
 
         return Integer.toString(result);
     }
+
+    @PostMapping("/math/area")
+    public String nArea(@RequestParam String type,
+                        @RequestParam (required = false, defaultValue = "0") int radius,
+                        @RequestParam (required = false, defaultValue = "0") int width,
+                        @RequestParam (required = false, defaultValue = "0") int height){
+        //int result=0;
+        if(type.equals("circle")){
+
+            if(radius<=0) {
+                return "INVALID";
+            }
+            else
+                return Double.toString(3.14159*radius*radius);
+        }
+        else if(type.equals("rectangle")){
+            return Integer.toString(width*height);
+        }
+        else
+            return "INVALID TYPE";
+    }
 }

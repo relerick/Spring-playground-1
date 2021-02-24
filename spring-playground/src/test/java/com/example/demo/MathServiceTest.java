@@ -36,6 +36,16 @@ public class MathServiceTest {
         this.mvc.perform(post("/math/sum?n=4&n=5&n=6")).andExpect(content().string("15"));
     }
 
+    @Test
+    public void testnArea() throws Exception{
+        this.mvc.perform(post("/math/area?type=circle&radius=4")).andExpect(content().string("50.26544"));
+        this.mvc.perform(post("/math/area?type=rectangle&width=4&height=7")).andExpect(content().string("28"));
+        this.mvc.perform(post("/math/area?type=circle&radius=0")).andExpect(content().string("INVALID"));
+        this.mvc.perform(post("/math/area?type=TRI&radius=0")).andExpect(content().string("INVALID TYPE"));
+
+
+    }
+
 
 }
 
