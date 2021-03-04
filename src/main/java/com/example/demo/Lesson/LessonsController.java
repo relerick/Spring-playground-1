@@ -1,6 +1,4 @@
 package com.example.demo.Lesson;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,5 +20,20 @@ public class LessonsController {
     public Lesson create(@RequestBody Lesson lesson) {
         return this.repository.save(lesson);
     }
+
+    @GetMapping("/lessons/{id}")
+    public Lesson newLesson(@PathVariable String id){
+        Lesson newL=new Lesson();
+
+        newL.setId(Long.getLong(id));
+        newL.setTitle("JPA");
+        return this.repository.save(newL);
+    }
+
+    @DeleteMapping("/lessons/{id}")
+    public void deleteLesson(@PathVariable String id){
+        repository.deleteById(Long.getLong(id));
+    }
+
 
 }
